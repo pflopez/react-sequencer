@@ -8,15 +8,15 @@ import {Clock} from "./clock";
 import StepIndicator from "../components/step-indicator";
 
 function generateTracks(): TrackModel[] {
-    return [new TrackModel('kick'), new TrackModel('snare'), new TrackModel('tom')];
+    return [new TrackModel('kick', 'sounds/1/kick.wav'),
+        new TrackModel('snare', 'sounds/1/snare.wav'),
+        new TrackModel('hat', 'sounds/1/hat.wav')];
 }
 
 export default function Home() {
 
-
     const [tracks, setTracks] = useState(generateTracks());
     const clock = Clock();
-
 
     function onUpdateBpm(userBpm: string) {
         userBpm = userBpm || '0';
@@ -49,7 +49,7 @@ export default function Home() {
                 />
                 <div className={styles.tracks}>
                     {tracks.map((track) => (
-                        <Track key={track.name} trackModel={track} onUpdateTrack={onUpdateTrack}/>
+                        <Track key={track.name} trackModel={track} onUpdateTrack={onUpdateTrack} activeStep={clock.activeStep}/>
                     ))}
                     <StepIndicator steps={tracks[0].steps} activeStep={clock.activeStep}/>
                 </div>
