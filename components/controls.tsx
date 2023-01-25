@@ -16,8 +16,10 @@ export default function Controls({playing, bpm, onTogglePlay, onUpdateBpm}: Prop
 
     return (
         <div className={styles.controls}>
+            <h1 className={styles.logo}>Sequencer</h1>
             <div className={styles.helper}>
-                Sequencer
+                Click steps to toggle on or off.<br/>
+                Right click steps to add accent.
             </div>
             <div className={styles.center}>
                 <div className={styles.bpmText}>bpm</div>

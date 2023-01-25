@@ -10,10 +10,10 @@ export class Player {
     }
   }
 
-  play(volume: number, trackVolume: number) {
+  play(volume: number) {
     if (this.howl) {
-    //  this.howl.stop();
-      this.howl.volume(trackVolume / volume)
+      this.howl.stop();
+      this.howl.volume(volume);
       this.howl.play();
     }
   }

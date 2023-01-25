@@ -13,8 +13,6 @@
     background-color: var(--step-color--active);
     background-image: url("../public/stop.png");
     color: var(--input-color);
-
-
 }
 
 
@@ -45,15 +43,21 @@
     height: 40px;
 }
 
-.helper {
+.logo {
     color: var(--instrument-name-color);
     font-size: 47px;
-    flex: 1 1;
+
     text-transform: lowercase;
     font-weight: bold;
     letter-spacing: -5px;
     line-height: 0;
 
+}
+.helper{
+    color: var(--font-color);
+    font-size: 12px;
+    flex: 1;
+    align-self: self-end;
 }
 
 .center {

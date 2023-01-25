@@ -14,15 +14,16 @@ function generateTracks(): TrackModel[] {
         new TrackModel('open hat', 'sounds/1/lev.wav'),
         new TrackModel('Tom', 'sounds/1/odd.wav'),
 
-
-
     ];
 }
 
-export default function Home() {
+export default function Sequencer() {
 
     const [tracks, setTracks] = useState(generateTracks());
     const clock = Clock();
+    const [adding, setAdding] = useState(false);
+    const [clickStepTarget, setClickStepTarget] =  useState(null)
+
 
     function onUpdateBpm(userBpm: string) {
         userBpm = userBpm || '0';
@@ -37,6 +38,8 @@ export default function Home() {
             return t;
         }));
     }
+
+
 
     return (
         <>
@@ -56,7 +59,16 @@ export default function Home() {
                 />
                 <div className={styles.tracks}>
                     {tracks.map((track) => (
-                        <Track key={track.name} trackModel={track} onUpdateTrack={onUpdateTrack} activeStep={clock.activeStep}/>
+                        <Track
+                            key={track.name}
+                            trackModel={track}
+                            onUpdateTrack={onUpdateTrack}
+                            activeStep={clock.activeStep}
+                            adding={adding}
+                            setAdding={setAdding}
+                            clickStepTarget={clickStepTarget}
+                            setClickStepTarget={setClickStepTarget}
+                        />
                     ))}
                     <StepIndicator steps={tracks[0].steps} activeStep={clock.activeStep}/>
                 </div>

@@ -34,11 +34,12 @@
   background-color: var(--step-color);
   border-radius: var(--step-border-radius);
   margin: var(--step-spacing) calc(var(--step-spacing) / 2);
-  align-items: center;
   text-align: center;
   cursor: pointer;
   border: none;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 
   // &.vel-1 {
@@ -47,6 +48,17 @@
     background-color: var(--step-color--active);
     box-shadow: 0 0 2px 1px var(--step-color--active);
   }
+  &.accent:after {
+    // background-color: var(--step-color--vel-1);
+    width: 100%;
+    margin: 4px;
+    height: calc(100% - 8px);
+    content: '';
+    background-color: #ecb9b9;
+    display: block;
+    border-radius: 4px;
+  }
+
   &.vel-2 {
     background-color: var(--step-color--vel-2);
   }
