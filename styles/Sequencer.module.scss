@@ -1,60 +1,6 @@
-@mixin dark() {
-  --font-color: white;
-
-  // sequencer
-  --sequencer-bg: #151515;
-  --app-bg: #1b1b1b;
-  --instrument-name-color: #505050;
-  --button-bg-color: #303030;
-  --button-font-color: #d0d0d0;
-  --input-color: #232323;
-  --input-font-color: #d0d0d0;
-  --tracks-border-color: #343434;
-  --sequencer-border-color: #343434;
-
-  // steps
-
-  --step-color: #333333;
-  --step-color--active: #ff6767;
-  --step-color-hue: 43;
-  --step-color--vel-1: hwb(var(--step-color-hue) 20% 0%);
-  --step-color--vel-2: hwb(var(--step-color-hue) 10% 40%);
-  --step-color--vel-3: hwb(var(--step-color-hue) 20% 70%);
-}
-
-@mixin light() {
-  --font-color: #252525;
-  // sequencer
-  --sequencer-bg: #fff;
-  --app-bg: #f8f8f8;
-  --instrument-name-color: #505050;
-  --button-bg-color: #f0f0f0;
-  --button-font-color: #252525;
-  --input-color: #f0f0f0;
-  --input-font-color: #252525;
-  --tracks-border-color: transparent;
-  --sequencer-border-color: transparent;
-
-  // steps
-
-  --step-color: #d0d0d0;
-  --step-color--active: #fff6a1;
-  --step-color-hue: 43;
-  --step-color--vel-1: hwb(var(--step-color-hue) 20% 0%);
-  --step-color--vel-2: hwb(var(--step-color-hue) 40% 10%);
-  --step-color--vel-3: hwb(var(--step-color-hue) 70% 10%);
-}
 
 .sequencer {
-  --track-name-width: 100px;
-  --step-size: 30px;
-  --step-border-radius: 5px;
-  --step-spacing: 6px;
-  --step-group-margin: 10px;
-  --border-radius : 8px;
-
-
-  background: var(--app-bg);
+  background-color: var(--sequencer-bg);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -63,36 +9,14 @@
   color: var(--font-color);
   font-family: sans-serif;
   font-size: var(--font-size);
-  border: 1px solid var(--sequencer-border-color);
   border-radius: var(--border-radius);
-
-  @media (prefers-color-scheme: dark) {
-
-    @include dark;
-
-    &.inverted {
-      @include light;
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-
-    @include light;
-
-    &.inverted {
-      @include dark;
-    }
-  }
+  box-shadow: 1px 6px 19px 10px black;
 }
 
 .tracks {
   display: flex;
-  border: 1px solid var(--tracks-border-color);
-  border-radius: calc(var(--border-radius) / 2 );
   flex-direction: column;
   margin: 0;
-  background-color: var(--sequencer-bg);
-  padding: 10px;
 }
 
 .stepIndicator {
@@ -104,12 +28,11 @@
 .indicator {
   width: var(--step-size);
   height: 4px;
-  background-color: var(--step-color);
+  background-color: var(--step-indicator-color);
   border-radius: var(--step-border-radius);
-  margin: 2px;
+  margin: calc(var(--step-spacing) / 2);
   align-items: center;
   text-align: center;
-  cursor: pointer;
   border: none;
 
   &:nth-child(4n + 1) {

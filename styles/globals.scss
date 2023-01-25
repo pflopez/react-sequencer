@@ -1,42 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
-
-:root {
-    --main-bg-color: white;
-}
-
-/* Set core body defaults */
 body {
+    // sequencer
+    --sequencer-bg: #151515;
+    --app-bg: #1b1919;
+
+    // text
+    --instrument-name-color: #6c787f;
+    --font-color: white;
+
+    // buttons
+    --button-bg-color: #303030;
+    --button-font-color: #d0d0d0;
+    // input
+    --input-color: #55585a;
+    --input-font-color: #1b1b1b;
+
+    // steps
+    --step-color: #55585a;
+    --step-color--active: #ff6767;
+    --step-indicator-color: #474c50;
+    --step-size: 36px;
+    --step-border-radius: 6px;
+    --step-spacing: 8px;
+    --step-group-margin: calc(var(--step-spacing) * 2);
+    --border-radius : 8px;
+
+    // track
+    --track-name-width: 100px;
+
+
+
+
     min-height: 100vh;
     scroll-behavior: smooth;
-    text-rendering: optimizeSpeed;
+    text-rendering: optimizeLegibility;
     line-height: 1.5;
-    background-color: var(--main-bg-color);
+    background-color: var(--app-bg);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-
-    @media (prefers-color-scheme: dark) {
-
-        --main-bg-color: #171717;
-
-        &.inverted {
-            --main-bg-color: white;
-        }
-    }
-
-    @media (prefers-color-scheme: light) {
-
-        --main-bg-color: white;
-
-        &.inverted {
-            --main-bg-color: #171717;
-        }
-    }
 
 }
 
-app-root {
-    margin-top: 20px;
+
+input, button {
+    border: none;
+    background-color: var(--input-color) ;
+    color: var(--input-font-color)
 }
 
 

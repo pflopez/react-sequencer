@@ -1,6 +1,63 @@
+.controls {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .stopped {
     border-color: green;
+    background-image: url("../public/play.png");
 }
 .playing {
-    border-color: red;
+    background-color: var(--step-color--active);
+    background-image: url("../public/stop.png");
+    color: var(--input-color);
+
+
+}
+
+
+.togglePlay {
+    width: 56px;
+    height: 40px;
+    border-radius: 6px;
+    background-position: center;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.bpmText {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: right;
+    color: var(--instrument-name-color);
+}
+
+.bpm{
+    width: 120px;
+    text-align: right;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 5px;
+    height: 40px;
+}
+
+.helper {
+    color: var(--instrument-name-color);
+    font-size: 47px;
+    flex: 1 1;
+    text-transform: lowercase;
+    font-weight: bold;
+    letter-spacing: -5px;
+    line-height: 0;
+
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    gap: var(--step-group-margin);
 }

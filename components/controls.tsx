@@ -10,13 +10,22 @@ type Props = {
 
 export default function Controls({playing, bpm, onTogglePlay, onUpdateBpm}: Props) {
 
-    function togglePlay(){
+    function togglePlay() {
         onTogglePlay();
     }
+
     return (
-        <>
-            <button onClick={togglePlay} className={playing ? styles.playing : styles.stopped}>{playing ? 'Stop' : 'Play'}</button>
-            <input value={bpm} onChange={ e => onUpdateBpm(e.target.value)}/>
-        </>
+        <div className={styles.controls}>
+            <div className={styles.helper}>
+                Sequencer
+            </div>
+            <div className={styles.center}>
+                <div className={styles.bpmText}>bpm</div>
+                <input value={bpm} onChange={e => onUpdateBpm(e.target.value)} className={styles.bpm}/>
+            </div>
+
+            <button onClick={togglePlay}
+    className={styles.togglePlay + ' ' + (playing ? styles.playing : styles.stopped)}/>
+        </div>
     );
 }

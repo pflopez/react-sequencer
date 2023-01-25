@@ -10,7 +10,13 @@ import StepIndicator from "../components/step-indicator";
 function generateTracks(): TrackModel[] {
     return [new TrackModel('kick', 'sounds/1/kick.wav'),
         new TrackModel('snare', 'sounds/1/snare.wav'),
-        new TrackModel('hat', 'sounds/1/hat.wav')];
+        new TrackModel('closed hat', 'sounds/1/hat.wav'),
+        new TrackModel('open hat', 'sounds/1/lev.wav'),
+        new TrackModel('Tom', 'sounds/1/odd.wav'),
+
+
+
+    ];
 }
 
 export default function Home() {
@@ -41,6 +47,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className={styles.sequencer}>
+
                 <Controls
                     playing={clock.playing}
                     bpm={clock.bpm}
