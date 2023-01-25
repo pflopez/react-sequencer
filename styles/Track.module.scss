@@ -1,0 +1,134 @@
+
+
+.track {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.trackName {
+  width: var(--track-name-width);
+  color: var(--instrument-name-color);
+  padding: 5px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: right;
+  cursor: pointer;
+  user-select: none;
+
+  &:focus-visible {
+    outline: none;
+    background-color: var(--input-color);
+    color: var(--input-font-color);
+  }
+}
+
+.trackSteps {
+  display: flex;
+}
+
+.step {
+  width: var(--step-size);
+  height: calc(var(--step-size) * 1.3);
+  background-color: var(--step-color);
+  border-radius: var(--step-border-radius);
+  margin: 2px;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+
+
+
+  // &.vel-1 {
+  &.active {
+    // background-color: var(--step-color--vel-1);
+    background: red;
+  }
+  &.vel-2 {
+    background-color: var(--step-color--vel-2);
+  }
+  &.vel-3 {
+    background-color: var(--step-color--vel-3);
+  }
+  // spaces on groups (4/4)
+  &:nth-child(4n + 1) {
+    margin-left: var(--step-group-margin);
+  }
+  // adds space between the last step and the select
+  &:last-of-type {
+    margin-right: var(--step-group-margin);
+  }
+
+
+  &.fl {
+    &::after {
+      content: "";
+      width: 50%;
+      height: 3px;
+      background-color: #4a4a4a;
+      display: block;
+      position: relative;
+      top: 8px;
+      margin: auto;
+      border-radius: 3px;
+    }
+
+    &.on.active::after {
+      background-color: var(--step-color--active);
+      box-shadow: 0 0 2px 2px var(--step-color--active);;
+    }
+  }
+}
+
+
+
+
+
+//select {
+//  border-radius: var(--step-border-radius);
+//  height: calc(var(--step-size) * 1.3);
+//  border: none;
+//  text-align: center;
+//  margin-left: auto;
+//  background-color: var(--input-color);
+//  color: var(--input-font-color);
+//  user-select: none;
+//}
+
+
+.active-step-indicator{
+  display: flex;
+  align-items: center;
+
+  &.padded {
+    margin-left: var(--track-name-width);
+  }
+}
+
+.indicator {
+  width: var(--step-size);
+  height: 3px;
+  background-color: var(--step-color);
+  display: block;
+  position: relative;
+  top: 8px;
+  border-radius: 3px;
+  margin: var(--step-spacing) calc(var(--step-spacing) / 2);
+
+  &:nth-child(4n + 1) {
+    margin-left: var(--step-group-margin);
+  }
+
+  &.active {
+    background-color: var(--step-color--active);
+    box-shadow: 0 0 2px 2px var(--step-color--active);;
+  }
+}
+
+
+//
+//pl-knob {
+//  margin: var(--step-group-margin);
+//}
