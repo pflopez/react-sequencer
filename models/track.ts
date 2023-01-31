@@ -22,6 +22,4 @@ export class TrackModel {
     play(step:Step){
         this.player.play(step.getVolume());
     }
-
-
 }

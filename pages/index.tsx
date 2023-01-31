@@ -4,7 +4,7 @@ import Controls from "../components/controls";
 import {TrackModel} from "../models/track";
 import styles from '../styles/Sequencer.module.scss'
 import {useState} from "react";
-import {Clock} from "./clock";
+import {Clock} from "../models/clock";
 import StepIndicator from "../components/step-indicator";
 
 function generateTracks(): TrackModel[] {
