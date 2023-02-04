@@ -1,51 +1,45 @@
 body {
-    // sequencer
-    --sequencer-bg: #151515;
-    --app-bg: #1b1919;
+  // sequencer
+  --sequencer-bg: #151515;
+  --app-bg: #1b1919;
 
-    // text
-    --instrument-name-color: #6c787f;
-    --font-color: #c0c0c0;
+  // text
+  --instrument-name-color: #6c787f;
+  --font-color: #c0c0c0;
 
-    // buttons
-    --button-bg-color: #303030;
-    --button-font-color: #d0d0d0;
-    // input
-    --input-color: #55585a;
-    --input-font-color: #1b1b1b;
+  // buttons
+  --button-bg-color: #303030;
+  --button-font-color: #d0d0d0;
+  // input
+  --input-color: #55585a;
+  --input-font-color: #1b1b1b;
 
-    // steps
-    --step-color: #55585a;
-    --step-color--active: #ff6767;
-    --step-indicator-color: #474c50;
-    --step-size: 36px;
-    --step-border-radius: 6px;
-    --step-spacing: 8px;
-    --step-group-margin: calc(var(--step-spacing) * 2);
-    --border-radius : 8px;
+  // steps
+  --step-color: #55585a;
+  --step-color--active: #ff6767;
+  --step-indicator-color: #474c50;
+  --step-size: 36px;
+  --step-border-radius: 6px;
+  --step-spacing: 8px;
+  --step-group-margin: calc(var(--step-spacing) * 2);
+  --border-radius: 8px;
 
-    // track
-    --track-name-width: 100px;
+  // track
+  --track-name-width: 100px;
 
-
-
-
-    min-height: 100vh;
-    scroll-behavior: smooth;
-    text-rendering: optimizeLegibility;
-    line-height: 1.5;
-    background-color: var(--app-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  background-color: var(--app-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-input, button {
-    border: none;
-    background-color: var(--input-color) ;
-    color: var(--input-font-color)
+input,
+button {
+  border: none;
+  background-color: var(--input-color);
+  color: var(--input-font-color);
 }
-
-

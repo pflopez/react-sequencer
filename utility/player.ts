@@ -1,5 +1,4 @@
-import {Howl} from 'howler';
-
+import { Howl } from "howler";
 
 export class Player {
   howl: Howl | null = null;
@@ -28,15 +27,15 @@ export class Player {
     return new Promise((resolve) => {
       if (this.howl) {
         const track = this.howl;
-        track.once('load', () => resolve(track.duration()))
+        track.once("load", () => resolve(track.duration()));
       }
-    })
+    });
   }
 }
 
 function _howl(file: string) {
   return new Howl({
     src: [file],
-    volume: 1
-  })
+    volume: 1,
+  });
 }

@@ -1,19 +1,15 @@
-
-import { v4 } from 'uuid';
+import { v4 } from "uuid";
 
 export class Step {
   on = false;
   accent = false;
-  id: string = '';
+  id: string = "";
 
-  getVolume(){
+  getVolume() {
     return this.accent ? 1 : 0.5;
   }
 
   constructor() {
     this.id = v4();
   }
-
 }
-
-

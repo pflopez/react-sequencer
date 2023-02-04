@@ -1,67 +1,65 @@
 .controls {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .stopped {
-    border-color: green;
-    background-image: url("../public/play.png");
+  border-color: green;
+  background-image: url("../public/play.png");
 }
 .playing {
-    background-color: var(--step-color--active);
-    background-image: url("../public/stop.png");
-    color: var(--input-color);
+  background-color: var(--step-color--active);
+  background-image: url("../public/stop.png");
+  color: var(--input-color);
 }
 
-
 .togglePlay {
-    width: 56px;
-    height: 40px;
-    border-radius: 6px;
-    background-position: center;
-    background-size: 25px;
-    background-repeat: no-repeat;
-    cursor: pointer;
+  width: 56px;
+  height: 40px;
+  border-radius: 6px;
+  background-position: center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .bpmText {
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: bold;
-    text-align: right;
-    color: var(--instrument-name-color);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: right;
+  color: var(--instrument-name-color);
 }
 
-.bpm{
-    width: 120px;
-    text-align: right;
-    font-weight: bold;
-    border-radius: 6px;
-    padding: 5px;
-    height: 40px;
+.bpm {
+  width: 120px;
+  text-align: right;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 5px;
+  height: 40px;
 }
 
 .logo {
-    color: var(--instrument-name-color);
-    font-size: 47px;
+  color: var(--instrument-name-color);
+  font-size: 47px;
 
-    text-transform: lowercase;
-    font-weight: bold;
-    letter-spacing: -5px;
-    line-height: 0;
-
+  text-transform: lowercase;
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: 0;
 }
-.helper{
-    color: var(--font-color);
-    font-size: 12px;
-    flex: 1;
-    align-self: self-end;
+.helper {
+  color: var(--font-color);
+  font-size: 12px;
+  flex: 1;
+  align-self: self-end;
 }
 
 .center {
-    display: flex;
-    align-items: center;
-    gap: var(--step-group-margin);
+  display: flex;
+  align-items: center;
+  gap: var(--step-group-margin);
 }
