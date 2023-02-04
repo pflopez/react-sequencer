@@ -43,7 +43,6 @@
   &.active {
     // background-color: var(--step-color--vel-1);
     background-color: var(--step-color--active);
-    box-shadow: 0 0 2px 1px var(--step-color--active);
   }
   &.accent:after {
     // background-color: var(--step-color--vel-1);
@@ -86,7 +85,6 @@
 
     &.on.active::after {
       background-color: var(--step-color--active);
-      box-shadow: 0 0 2px 2px var(--step-color--active);
     }
   }
 }
@@ -127,11 +125,5 @@
 
   &.active {
     background-color: var(--step-color--active);
-    box-shadow: 0 0 2px 2px var(--step-color--active);
   }
 }
-
-//
-//pl-knob {
-//  margin: var(--step-group-margin);
-//}
