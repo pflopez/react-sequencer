@@ -8,7 +8,7 @@ export const VolumeLevels: Record<VolumeLevelNames, number> = {
   high: 1,
 };
 
-export const probablity = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+export const probability = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 export class Step {
   on = false;

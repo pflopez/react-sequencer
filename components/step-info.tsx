@@ -1,5 +1,5 @@
 import {
-  probablity,
+  probability,
   Step,
   VolumeLevelNames,
   VolumeLevels,
@@ -17,8 +17,20 @@ export default function StepInfo({
     updateStepInfo(step, { volume: value });
   }
   function updateProbability(prob: number) {
-    console.log(step);
     updateStepInfo(step, { probability: prob });
+  }
+
+  function volumeCssClasses(value: string) {
+    const classes = [styles.step, step.volume === value ? styles.active : ""];
+    return classes.join(" ");
+  }
+
+  function probabilityCssClasses(prob: number) {
+    const classes = [
+      styles.step,
+      step.probability === prob ? styles.active : "",
+    ];
+    return classes.join(" ");
   }
 
   if (step) {
@@ -30,11 +42,7 @@ export default function StepInfo({
             {Object.entries(VolumeLevels).map((value) => (
               <div
                 key={value[0]}
-                className={
-                  styles.step +
-                  " " +
-                  (step.volume === value[0] ? styles.active : "")
-                }
+                className={volumeCssClasses(value[0])}
                 onClick={(_) => updateVolume(value[0] as VolumeLevelNames)}
               >
                 <span>{value[0]}</span>
@@ -46,14 +54,10 @@ export default function StepInfo({
         <div className={styles.stepInfo}>
           <h4>Step Probability</h4>
           <div className={styles.trackSteps}>
-            {probablity.map((prob) => (
+            {probability.map((prob) => (
               <div
                 key={prob}
-                className={
-                  styles.step +
-                  " " +
-                  (step.probability === prob ? styles.active : "")
-                }
+                className={probabilityCssClasses(prob)}
                 onClick={(_) => updateProbability(prob)}
               >
                 <span>{prob}</span>

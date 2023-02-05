@@ -4,6 +4,10 @@ Demo app to practice some react development.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Fixme
+- Sequencer timer is kind of off. Need another way to keep time (currently using useEffect and setInterval)
+- Sequencer/tracks/steps are drawn twice?
+
 ## Getting Started
 
 First, run the development server:
