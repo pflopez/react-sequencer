@@ -1,6 +1,6 @@
 import Track from "../components/track";
 import Controls from "../components/controls";
-import { TrackModel } from "../models/track";
+import { generateTracks, TrackModel } from "../models/track";
 import styles from "../styles/Sequencer.module.scss";
 import { useEffect, useState } from "react";
 import { Clock } from "../models/clock";
@@ -10,17 +10,7 @@ import {
   saveTracksInLocalStorage,
 } from "../utility/ls";
 import StepInfo from "./step-info";
-import { Step, VolumeLevelNames, VolumeLevels } from "../models/step";
-
-function generateTracks(): TrackModel[] {
-  return [
-    new TrackModel("kick", "sounds/1/kick.wav"),
-    new TrackModel("snare", "sounds/1/snare.wav"),
-    new TrackModel("closed hat", "sounds/1/close.wav"),
-    new TrackModel("open hat", "sounds/1/lev.wav"),
-    new TrackModel("Tom", "sounds/1/odd.wav"),
-  ];
-}
+import { Step, VolumeLevelNames } from "../models/step";
 
 const emptyStep = new Step(false, "mid", 100);
 
@@ -78,13 +68,13 @@ export default function Sequencer() {
       setSelectedStep(step);
       onUpdateTrack(selectedTrack);
     } else {
-      setSelectedStep(
-        new Step(
-          false,
-          value.volume || selectedStep.volume,
-          value.probability || selectedStep.probability
-        )
-      );
+      setSelectedStep({
+        ...selectedStep,
+        ...{
+          volume: value.volume || selectedStep.volume,
+          probability: value.probability || selectedStep.probability,
+        },
+      });
     }
   }
 

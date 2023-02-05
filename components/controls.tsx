@@ -21,13 +21,22 @@ export default function Controls({
     onTogglePlay();
   }
 
+  function playButtonClasses() {
+    const css = [
+      styles.togglePlay,
+      styles.button,
+      playing ? styles.playing : styles.stopped,
+    ];
+    return css.join(" ");
+  }
+
   return (
     <div className={styles.controls}>
       <h1 className={styles.logo}>Sequencer</h1>
       <div className={styles.helper}>
         Click steps to toggle on or off.
         <br />
-        Right click steps to add accent.
+        Right click edit step values
       </div>
       <div className={styles.center}>
         <div className={styles.bpmText}>bpm</div>
@@ -44,16 +53,7 @@ export default function Controls({
         Clear
       </button>
 
-      <button
-        onClick={togglePlay}
-        className={
-          styles.togglePlay +
-          " " +
-          styles.button +
-          " " +
-          (playing ? styles.playing : styles.stopped)
-        }
-      />
+      <button onClick={togglePlay} className={playButtonClasses()} />
     </div>
   );
 }

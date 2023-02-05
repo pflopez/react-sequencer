@@ -25,7 +25,7 @@ export default function StepInfo({
   function volumeCssClasses(value: string) {
     const classes = [
       styles.step,
-      emptyStep ? "" : styles.accent,
+      emptyStep ? "" : styles.selected,
       step.volume === value ? styles.active : "",
     ];
     return classes.join(" ");
@@ -34,7 +34,7 @@ export default function StepInfo({
   function probabilityCssClasses(prob: number) {
     const classes = [
       styles.step,
-      emptyStep ? "" : styles.accent,
+      emptyStep ? "" : styles.selected,
       step.probability === prob ? styles.active : "",
     ];
     return classes.join(" ");
@@ -42,11 +42,7 @@ export default function StepInfo({
 
   if (step) {
     return (
-      <section
-        className={
-          styles.stepInfoContainer + " " + emptyStep ? styles.accent : ""
-        }
-      >
+      <section className={styles.stepInfoContainer}>
         <div className={styles.stepInfo}>
           <h4>Step Volume:</h4>
           <div className={styles.trackSteps}>

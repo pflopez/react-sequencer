@@ -1,6 +1,6 @@
 import styles from "../styles/Track.module.scss";
 import { TrackModel } from "../models/track";
-import { Step, VolumeLevels } from "../models/step";
+import { Step } from "../models/step";
 import { useEffect } from "react";
 
 type Props = {
@@ -42,7 +42,14 @@ export default function Track({
       event.preventDefault();
       return false;
     }
-    updateStep(step, !step.on);
+    // should be on if changing something
+    const on =
+      !step.on ||
+      selectedStep.volume !== step.volume ||
+      selectedStep.probability !== step.probability;
+
+    updateStep(step, on);
+
     setAdding(step.on);
     setClickStepTarget((event.target as HTMLElement).parentElement as any);
   }
@@ -97,7 +104,9 @@ export default function Track({
             onMouseDown={(e) => clickStep(e, step)}
             onMouseEnter={(e) => hoverStep(e, step)}
             onMouseUp={endClick}
-          />
+          >
+            {step.on && step.probability !== 100 ? step.probability : ""}
+          </div>
         ))}
       </div>
     </div>

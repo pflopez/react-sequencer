@@ -60,3 +60,13 @@ export class TrackModel {
     return new TrackModel(track.name, track.sample, trackSteps);
   }
 }
+
+export function generateTracks(): TrackModel[] {
+  return [
+    new TrackModel("kick", "sounds/1/kick.wav"),
+    new TrackModel("snare", "sounds/1/snare.wav"),
+    new TrackModel("closed hat", "sounds/1/close.wav"),
+    new TrackModel("open hat", "sounds/1/lev.wav"),
+    new TrackModel("Tom", "sounds/1/odd.wav"),
+  ];
+}
