@@ -75,9 +75,9 @@ export default function Track({
   }
 
   function stepClass(step: Step) {
-    console.log(step.volume);
     let classes = [
       styles.step,
+      styles.grouped,
       step.on ? styles.active : " ",
       step.id === selectedStep.id ? styles.accent : "",
       styles[step.volume],

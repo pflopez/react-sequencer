@@ -22,14 +22,14 @@ function generateTracks(): TrackModel[] {
   ];
 }
 
+const emptyStep = new Step(false, "mid", 100);
+
 export default function Sequencer() {
   const [tracks, setTracks] = useState(generateTracks());
   const clock = Clock();
   const [adding, setAdding] = useState(false);
   const [clickStepTarget, setClickStepTarget] = useState(null);
-  const [selectedStep, setSelectedStep] = useState<Step>(
-    new Step(false, "mid", 100)
-  );
+  const [selectedStep, setSelectedStep] = useState<Step>(emptyStep);
   const [selectedTrack, setSelectedTrack] = useState<TrackModel | null>(null);
 
   useEffect(() => {
@@ -89,8 +89,14 @@ export default function Sequencer() {
   }
 
   function updateSelectedStep(step: Step, track: TrackModel) {
-    setSelectedStep(step);
-    setSelectedTrack(track);
+    if (step.id === selectedStep.id) {
+      // remove selected state
+      setSelectedStep(emptyStep);
+      setSelectedTrack(null);
+    } else {
+      setSelectedStep(step);
+      setSelectedTrack(track);
+    }
   }
 
   return (
@@ -120,7 +126,11 @@ export default function Sequencer() {
         ))}
         <StepIndicator steps={tracks[0].steps} activeStep={clock.activeStep} />
       </div>
-      <StepInfo step={selectedStep} updateStepInfo={updateStepInfo} />
+      <StepInfo
+        step={selectedStep}
+        updateStepInfo={updateStepInfo}
+        emptyStep={selectedStep.id === emptyStep.id}
+      />
     </main>
   );
 }

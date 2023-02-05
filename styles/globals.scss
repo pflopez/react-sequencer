@@ -17,6 +17,9 @@ body {
   // steps
   --step-color: #55585a;
   --step-color--active: #ff6767;
+  --step-color--active-mid: #893f3f;
+  --step-color--active-low: #442826;
+
   --step-color--hover: #9e9999;
   --step-indicator-color: #474c50;
   --step-size: 36px;
@@ -24,6 +27,7 @@ body {
   --step-spacing: 8px;
   --step-group-margin: calc(var(--step-spacing) * 2);
   --border-radius: 8px;
+  --accent-color: #cdc184;
 
   // track
   --track-name-width: 100px;

@@ -9,9 +9,11 @@ import styles from "../styles/Track.module.scss";
 export default function StepInfo({
   step,
   updateStepInfo,
+  emptyStep,
 }: {
   step: Step;
   updateStepInfo: Function;
+  emptyStep: boolean;
 }) {
   function updateVolume(value: VolumeLevelNames) {
     updateStepInfo(step, { volume: value });
@@ -21,13 +23,18 @@ export default function StepInfo({
   }
 
   function volumeCssClasses(value: string) {
-    const classes = [styles.step, step.volume === value ? styles.active : ""];
+    const classes = [
+      styles.step,
+      emptyStep ? "" : styles.accent,
+      step.volume === value ? styles.active : "",
+    ];
     return classes.join(" ");
   }
 
   function probabilityCssClasses(prob: number) {
     const classes = [
       styles.step,
+      emptyStep ? "" : styles.accent,
       step.probability === prob ? styles.active : "",
     ];
     return classes.join(" ");
@@ -35,7 +42,11 @@ export default function StepInfo({
 
   if (step) {
     return (
-      <section>
+      <section
+        className={
+          styles.stepInfoContainer + " " + emptyStep ? styles.accent : ""
+        }
+      >
         <div className={styles.stepInfo}>
           <h4>Step Volume:</h4>
           <div className={styles.trackSteps}>

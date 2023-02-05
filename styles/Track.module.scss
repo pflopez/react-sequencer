@@ -4,7 +4,7 @@
   user-select: none;
 }
 
-.trackName {
+.trackName , .stepInfo h4{
   width: var(--track-name-width);
   color: var(--instrument-name-color);
   padding: 5px;
@@ -43,27 +43,19 @@
     background-color: var(--step-color--hover);
   }
 
-  &.active {
+  &.active:not(.accent) {
     background-color: var(--step-color--active);
     &.low {
-      opacity: 20%;
+      background-color: var(--step-color--active-low);
     }
     &.mid {
-      opacity: 50%;
+      background-color: var(--step-color--active-mid);
     }
     &.high {
-      opacity: 100%;
     }
   }
-  &.accent:after {
-    // background-color: var(--step-color--vel-1);
-    width: 100%;
-    margin: 4px;
-    height: calc(100% - 8px);
-    content: "";
-    background-color: #ecb9b9;
-    display: block;
-    border-radius: 4px;
+  &.active.accent {
+    background-color: var(--accent-color);
   }
 
 
@@ -74,10 +66,7 @@
   &.vel-3 {
     background-color: var(--step-color--vel-3);
   }
-  // spaces on groups (4/4)
-  &:nth-child(4n + 1) {
-    margin-left: var(--step-group-margin);
-  }
+
 
   &:last-of-type {
     margin-right: var(--step-group-margin);
@@ -100,7 +89,19 @@
       background-color: var(--step-color--active);
     }
   }
+
+  &.grouped {
+    // spaces on groups (4/4)
+    &:nth-child(4n + 1) {
+      margin-left: var(--step-group-margin);
+    }
+  }
 }
+
+
+
+
+
 
 //select {
 //  border-radius: var(--step-border-radius);
@@ -145,8 +146,15 @@
 .stepInfo {
   display: flex;
   align-items: center;
+  padding-bottom: 7px;
 
-  h4 {
-    width: 140px;
+  div {
+color: black;
   }
+}
+
+.stepInfoContainer {
+  background: #1c1c1c;
+  margin: 0 -20px -20px;
+  padding: 20px;
 }
