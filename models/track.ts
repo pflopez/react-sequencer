@@ -1,10 +1,10 @@
-import { Step } from "./step";
+import { Step, VolumeLevelNames, VolumeLevels } from "./step";
 import { Player } from "../utility/player";
 
 export interface TrackJsonFormat {
   name: string;
   sample: string;
-  steps: { on: boolean; accent: boolean }[];
+  steps: { on: boolean; volume: VolumeLevelNames; probability: number }[];
 }
 
 export class TrackModel {
@@ -31,20 +31,31 @@ export class TrackModel {
   }
 
   play(step: Step) {
-    this.player.play(step.getVolume());
+    if (step.probability >= 0 && step.probability <= 100) {
+      const randomNumber = Math.random() * 100;
+      if (randomNumber <= step.probability) {
+        this.player.play(VolumeLevels[step.volume]);
+      }
+    } else {
+      console.error("Invalid probability value");
+    }
   }
 
   toJson() {
     return {
       name: this.name,
       sample: this.sample,
-      steps: this.steps.map((step) => ({ accent: step.accent, on: step.on })),
+      steps: this.steps.map((step) => ({
+        volume: step.volume,
+        on: step.on,
+        probability: step.probability,
+      })),
     };
   }
 
   static fromJson(track: TrackJsonFormat) {
     const trackSteps = track.steps.map(
-      (stepInfo) => new Step(stepInfo.on, stepInfo.accent)
+      (stepInfo) => new Step(stepInfo.on, stepInfo.volume, stepInfo.probability)
     );
     return new TrackModel(track.name, track.sample, trackSteps);
   }

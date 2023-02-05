@@ -1,6 +1,6 @@
 import styles from "../styles/Track.module.scss";
 import { TrackModel } from "../models/track";
-import { Step } from "../models/step";
+import { Step, VolumeLevels } from "../models/step";
 import { useEffect } from "react";
 
 type Props = {
@@ -11,6 +11,8 @@ type Props = {
   setAdding: Function;
   clickStepTarget: any;
   setClickStepTarget: Function;
+  onSelectedStep: Function;
+  selectedStep: Step;
 };
 
 export default function Track({
@@ -21,6 +23,8 @@ export default function Track({
   setAdding,
   clickStepTarget,
   setClickStepTarget,
+  onSelectedStep,
+  selectedStep,
 }: Props) {
   // use effect to trigger samples.
   // This might not be  great as useEffect might be out of sync?
@@ -34,7 +38,7 @@ export default function Track({
   }, [activeStep]);
 
   function clickStep(event: React.MouseEvent<HTMLDivElement>, step: Step) {
-    if (event.button === 2 && step.on) {
+    if (event.button === 2) {
       event.preventDefault();
       return false;
     }
@@ -59,14 +63,26 @@ export default function Track({
       step.accent = false;
     }
     step.on = newValue;
+    step.volume = selectedStep.volume;
+    step.probability = selectedStep.probability;
     onUpdateTrack(trackModel);
   }
 
   function onContextMenu(event: React.MouseEvent<HTMLDivElement>, step: Step) {
     event.preventDefault();
-    step.accent = !step.accent;
-    onUpdateTrack(trackModel);
+    onSelectedStep(step, trackModel);
     return false;
+  }
+
+  function stepClass(step: Step) {
+    console.log(step.volume);
+    let classes = [
+      styles.step,
+      step.on ? styles.active : " ",
+      step.id === selectedStep.id ? styles.accent : "",
+      styles[step.volume],
+    ];
+    return classes.join(" ");
   }
 
   return (
@@ -77,13 +93,7 @@ export default function Track({
           <div
             key={step.id}
             onContextMenu={(e) => onContextMenu(e, step)}
-            className={
-              styles.step +
-              " " +
-              (step.on ? styles.active : " ") +
-              " " +
-              (step.accent ? styles.accent : "")
-            }
+            className={stepClass(step)}
             onMouseDown={(e) => clickStep(e, step)}
             onMouseEnter={(e) => hoverStep(e, step)}
             onMouseUp={endClick}

@@ -14,13 +14,12 @@
   &:hover {
     background-color: var(--step-color--hover);
   }
-  &:active{
+  &:active {
     background-color: var(--step-color--active);
   }
 
   transition: background-color 50ms linear;
 }
-
 
 .stopped {
   border-color: green;
@@ -42,7 +41,6 @@
   background-position: center;
   background-size: 25px;
   background-repeat: no-repeat;
-
 }
 
 .bpmText {

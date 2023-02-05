@@ -9,6 +9,8 @@ import {
   getTracksFromLocalStorage,
   saveTracksInLocalStorage,
 } from "../utility/ls";
+import StepInfo from "./step-info";
+import { Step, VolumeLevelNames, VolumeLevels } from "../models/step";
 
 function generateTracks(): TrackModel[] {
   return [
@@ -25,6 +27,10 @@ export default function Sequencer() {
   const clock = Clock();
   const [adding, setAdding] = useState(false);
   const [clickStepTarget, setClickStepTarget] = useState(null);
+  const [selectedStep, setSelectedStep] = useState<Step>(
+    new Step(false, "mid", 100)
+  );
+  const [selectedTrack, setSelectedTrack] = useState<TrackModel | null>(null);
 
   useEffect(() => {
     const data = getTracksFromLocalStorage();
@@ -53,8 +59,38 @@ export default function Sequencer() {
     saveTracksInLocalStorage(tracks);
   }
 
-  function onClearTracks(){
+  function onClearTracks() {
     setTracks(generateTracks());
+  }
+
+  function updateStepInfo(
+    step: Step,
+    value: { volume: VolumeLevelNames; probability: number }
+  ) {
+    if (value.volume) {
+      step.volume = value.volume;
+    }
+    if (value.probability) {
+      step.probability = value.probability;
+    }
+
+    if (selectedTrack) {
+      setSelectedStep(step);
+      onUpdateTrack(selectedTrack);
+    } else {
+      setSelectedStep(
+        new Step(
+          false,
+          value.volume || selectedStep.volume,
+          value.probability || selectedStep.probability
+        )
+      );
+    }
+  }
+
+  function updateSelectedStep(step: Step, track: TrackModel) {
+    setSelectedStep(step);
+    setSelectedTrack(track);
   }
 
   return (
@@ -78,10 +114,13 @@ export default function Sequencer() {
             setAdding={setAdding}
             clickStepTarget={clickStepTarget}
             setClickStepTarget={setClickStepTarget}
+            onSelectedStep={updateSelectedStep}
+            selectedStep={selectedStep}
           />
         ))}
         <StepIndicator steps={tracks[0].steps} activeStep={clock.activeStep} />
       </div>
+      <StepInfo step={selectedStep} updateStepInfo={updateStepInfo} />
     </main>
   );
 }

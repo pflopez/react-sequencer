@@ -37,13 +37,21 @@ export default function Controls({
           className={styles.bpm}
         />
       </div>
-      <button className={styles.button} onClick={(e) => onSaveTracks(e)}>Save</button>
-      <button className={styles.button} onClick={(e) => onClearTracks(e)}>Clear</button>
+      <button className={styles.button} onClick={(e) => onSaveTracks(e)}>
+        Save
+      </button>
+      <button className={styles.button} onClick={(e) => onClearTracks(e)}>
+        Clear
+      </button>
 
       <button
         onClick={togglePlay}
         className={
-          styles.togglePlay + " " + styles.button + " " + (playing ? styles.playing : styles.stopped)
+          styles.togglePlay +
+          " " +
+          styles.button +
+          " " +
+          (playing ? styles.playing : styles.stopped)
         }
       />
     </div>
