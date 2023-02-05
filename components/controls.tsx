@@ -5,6 +5,8 @@ type Props = {
   bpm: number;
   onTogglePlay: Function;
   onUpdateBpm: Function;
+  onSaveTracks: Function;
+  onClearTracks: Function;
 };
 
 export default function Controls({
@@ -12,6 +14,8 @@ export default function Controls({
   bpm,
   onTogglePlay,
   onUpdateBpm,
+  onSaveTracks,
+  onClearTracks,
 }: Props) {
   function togglePlay() {
     onTogglePlay();
@@ -33,11 +37,13 @@ export default function Controls({
           className={styles.bpm}
         />
       </div>
+      <button className={styles.button} onClick={(e) => onSaveTracks(e)}>Save</button>
+      <button className={styles.button} onClick={(e) => onClearTracks(e)}>Clear</button>
 
       <button
         onClick={togglePlay}
         className={
-          styles.togglePlay + " " + (playing ? styles.playing : styles.stopped)
+          styles.togglePlay + " " + styles.button + " " + (playing ? styles.playing : styles.stopped)
         }
       />
     </div>

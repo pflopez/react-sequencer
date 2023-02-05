@@ -1,9 +1,26 @@
 .controls {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   justify-content: flex-end;
   align-items: center;
 }
+
+.button {
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 10px;
+  &:hover {
+    background-color: var(--step-color--hover);
+  }
+  &:active{
+    background-color: var(--step-color--active);
+  }
+
+  transition: background-color 50ms linear;
+}
+
 
 .stopped {
   border-color: green;
@@ -13,16 +30,19 @@
   background-color: var(--step-color--active);
   background-image: url("../public/stop.png");
   color: var(--input-color);
+  &:hover {
+    background-color: var(--step-color--active);
+  }
 }
 
 .togglePlay {
   width: 56px;
   height: 40px;
-  border-radius: 6px;
+
   background-position: center;
   background-size: 25px;
   background-repeat: no-repeat;
-  cursor: pointer;
+
 }
 
 .bpmText {
@@ -56,6 +76,7 @@
   font-size: 12px;
   flex: 1;
   align-self: self-end;
+  padding-left: 10px;
 }
 
 .center {

@@ -39,6 +39,9 @@
   align-items: center;
   justify-content: center;
 
+  &:hover {
+    background-color: var(--step-color--hover);
+  }
   // &.vel-1 {
   &.active {
     // background-color: var(--step-color--vel-1);

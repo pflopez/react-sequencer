@@ -9,7 +9,9 @@ export class Step {
     return this.accent ? 1 : 0.5;
   }
 
-  constructor() {
+  constructor(on?: boolean, accent?: boolean) {
     this.id = v4();
+    this.on = on || false;
+    this.accent = accent || false;
   }
 }
