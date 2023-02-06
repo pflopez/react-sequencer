@@ -35,7 +35,7 @@
   position: relative;
   &:after {
     display: block;
-    content: '';
+    content: "";
     background-color: var(--step-indicator-color);
     width: 8px;
     height: 8px;

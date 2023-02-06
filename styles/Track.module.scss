@@ -4,7 +4,8 @@
   user-select: none;
 }
 
-.trackName, .stepInfo h4 {
+.trackName,
+.stepInfo h4 {
   width: var(--track-name-width);
   color: var(--instrument-name-color);
   padding: 5px;
@@ -71,7 +72,6 @@
     background-color: var(--accent-color);
   }
 
-
   &.vel-2 {
     background-color: var(--step-color--vel-2);
   }
@@ -79,7 +79,6 @@
   &.vel-3 {
     background-color: var(--step-color--vel-3);
   }
-
 
   &:last-of-type {
     margin-right: var(--step-group-margin);
@@ -110,7 +109,6 @@
     }
   }
 }
-
 
 .active-step-indicator {
   display: flex;
