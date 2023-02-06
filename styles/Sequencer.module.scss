@@ -26,19 +26,28 @@
 
 .indicator {
   width: var(--step-size);
-  height: 4px;
-  background-color: var(--step-indicator-color);
+  height: 20px;
   border-radius: var(--step-border-radius);
   margin: calc(var(--step-spacing) / 2);
   align-items: center;
   text-align: center;
   border: none;
+  position: relative;
+  &:after {
+    display: block;
+    content: '';
+    background-color: var(--step-indicator-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: auto;
+  }
 
   &:nth-child(4n + 1) {
     margin-left: var(--step-group-margin);
   }
 
-  &.active {
+  &.active:after {
     background-color: var(--step-color--active);
   }
 }
