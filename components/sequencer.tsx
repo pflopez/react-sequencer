@@ -22,6 +22,9 @@ export default function Sequencer() {
   const [selectedStep, setSelectedStep] = useState<Step>(emptyStep);
   const [selectedTrack, setSelectedTrack] = useState<TrackModel | null>(null);
 
+  const mutedTracks = tracks.filter((t) => t.mute).reduce((acc) => acc + 1, 0);
+  const mutatedTracksRatio = mutedTracks / tracks.length;
+
   useEffect(() => {
     const data = getTracksFromLocalStorage();
     if (data) {
@@ -89,6 +92,21 @@ export default function Sequencer() {
     }
   }
 
+  function onAllTrackMute() {
+    let mute = false;
+    if (mutedTracks === 0) {
+      // mute all.
+      mute = true;
+    }
+    // else unmute
+    setTracks(
+      tracks.map((t) => {
+        t.mute = mute;
+        return t;
+      })
+    );
+  }
+
   return (
     <main className={styles.sequencer}>
       <Controls
@@ -114,7 +132,12 @@ export default function Sequencer() {
             selectedStep={selectedStep}
           />
         ))}
-        <StepIndicator steps={tracks[0].steps} activeStep={clock.activeStep} />
+        <StepIndicator
+          steps={tracks[0].steps}
+          activeStep={clock.activeStep}
+          onAllTrackMute={onAllTrackMute}
+          mutedTracks={mutatedTracksRatio}
+        />
       </div>
       <StepInfo
         step={selectedStep}

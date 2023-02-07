@@ -31,7 +31,6 @@ export function Clock() {
 
   return {
     activeStep,
-    startPlaying,
     stop,
     togglePlay,
     playing,

@@ -75,6 +75,14 @@ export default function Track({
     onUpdateTrack(trackModel);
   }
 
+  function toggleMute() {
+    trackModel.mute = !trackModel.mute;
+    // This seems to work?
+    onUpdateTrack(trackModel);
+    // but shoulnd't I be doing this instead: ?
+    // onUpdateTrack({ ...trackModel, ...{ mute: trackModel.mute } });
+  }
+
   function onContextMenu(event: React.MouseEvent<HTMLDivElement>, step: Step) {
     event.preventDefault();
     onSelectedStep(step, trackModel);
@@ -95,6 +103,15 @@ export default function Track({
   return (
     <div className={styles.track}>
       <div className={styles.trackName}>{trackModel.name}</div>
+      <button
+        className={
+          styles.mute + " " + (trackModel.mute ? styles.activeButton : "")
+        }
+        onClick={toggleMute}
+        title="mute track"
+      >
+        M
+      </button>
       <div className={styles.trackSteps}>
         {trackModel.steps.map((step) => (
           <div

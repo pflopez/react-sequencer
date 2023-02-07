@@ -28,14 +28,16 @@
   width: var(--step-size);
   height: 20px;
   border-radius: var(--step-border-radius);
-  margin: calc(var(--step-spacing) / 2);
+  margin: var(--step-spacing) calc(var(--step-spacing) / 2);
   align-items: center;
   text-align: center;
   border: none;
   position: relative;
+  display: flex;
+  background-color: #1c1c1c;
   &:after {
     display: block;
-    content: '';
+    content: "";
     background-color: var(--step-indicator-color);
     width: 8px;
     height: 8px;
@@ -43,11 +45,38 @@
     margin: auto;
   }
 
-  &:nth-child(4n + 1) {
+  &:nth-child(4n + 2) {
     margin-left: var(--step-group-margin);
   }
 
   &.active:after {
     background-color: var(--step-color--active);
+  }
+}
+
+.mute {
+  width: calc(var(--step-size) * 0.7);
+  height: calc(var(--step-size) * 0.7);
+  background-color: var(--step-color);
+  border-radius: var(--step-border-radius);
+  margin-left: calc(var(--step-spacing) / 2);
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-size: 12px;
+  color: black;
+  font-weight: bold;
+  &:hover {
+    background-color: var(--step-color--hover);
+  }
+  &.mutedSome {
+    background-color: var(--step-color--active);
+  }
+  &.mutedAll {
+    background-color: var(--accent-color);
   }
 }

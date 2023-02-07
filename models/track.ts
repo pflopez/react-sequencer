@@ -12,6 +12,7 @@ export class TrackModel {
   name: string = "";
   sample: string = "";
   steps: Step[] = [];
+  mute = false;
   player = new Player();
 
   constructor(name: string, sample: string, steps?: Step[]) {
@@ -31,6 +32,7 @@ export class TrackModel {
   }
 
   play(step: Step) {
+    if (this.mute) return;
     if (step.probability >= 0 && step.probability <= 100) {
       const randomNumber = Math.random() * 100;
       if (randomNumber <= step.probability) {
