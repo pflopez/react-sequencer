@@ -1,0 +1,35 @@
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  margin-left: var(--track-name-width);
+}
+
+.indicator {
+  width: var(--step-size);
+  height: 20px;
+  border-radius: var(--step-border-radius);
+  margin: var(--step-spacing) calc(var(--step-spacing) / 2);
+  align-items: center;
+  text-align: center;
+  border: none;
+  position: relative;
+  display: flex;
+  background-color: #1c1c1c;
+  &:after {
+    display: block;
+    content: "";
+    background-color: var(--step-indicator-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: auto;
+  }
+
+  &:nth-child(4n + 2) {
+    margin-left: var(--step-group-margin);
+  }
+
+  &.active:after {
+    background-color: var(--step-color--active);
+  }
+}

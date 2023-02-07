@@ -1,6 +1,6 @@
-import styles from "../styles/Sequencer.module.scss";
+import styles from "../styles/StepIndicator.module.scss";
 import { Step } from "../models/step";
-import { isImmutable } from "immutable";
+import buttonStyles from "../styles/Buttons.module.scss";
 
 type Props = {
   steps: Step[];
@@ -16,15 +16,15 @@ export default function StepIndicator({
 }: Props) {
   function cssForMute() {
     if (mutedTracks === 0) return;
-    if (mutedTracks === 1) return styles.mutedAll;
-    if (mutedTracks > 0) return styles.mutedSome;
+    if (mutedTracks === 1) return buttonStyles.mutedAll;
+    if (mutedTracks > 0) return buttonStyles.mutedSome;
   }
 
   return (
     <>
       <div className={styles.stepIndicator}>
         <button
-          className={styles.mute + " " + cssForMute()}
+          className={buttonStyles.mute + " " + cssForMute()}
           title="mute track"
           onClick={(_) => onAllTrackMute()}
         >

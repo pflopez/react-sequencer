@@ -1,4 +1,5 @@
 import styles from "../styles/Track.module.scss";
+import buttonStyles from "../styles/Buttons.module.scss";
 import { TrackModel } from "../models/track";
 import { Step } from "../models/step";
 import { useEffect } from "react";
@@ -91,11 +92,11 @@ export default function Track({
 
   function stepClass(step: Step) {
     let classes = [
-      styles.step,
-      styles.grouped,
-      step.on ? styles.active : " ",
-      step.id === selectedStep.id ? styles.accent : "",
-      styles[step.volume],
+      buttonStyles.step,
+      buttonStyles.grouped,
+      step.on ? buttonStyles.active : " ",
+      step.id === selectedStep.id ? buttonStyles.accent : "",
+      buttonStyles[step.volume],
     ];
     return classes.join(" ");
   }
@@ -105,7 +106,9 @@ export default function Track({
       <div className={styles.trackName}>{trackModel.name}</div>
       <button
         className={
-          styles.mute + " " + (trackModel.mute ? styles.activeButton : "")
+          buttonStyles.mute +
+          " " +
+          (trackModel.mute ? buttonStyles.activeButton : "")
         }
         onClick={toggleMute}
         title="mute track"

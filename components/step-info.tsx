@@ -4,7 +4,8 @@ import {
   VolumeLevelNames,
   VolumeLevels,
 } from "../models/step";
-import styles from "../styles/Track.module.scss";
+import styles from "../styles/StepInfo.module.scss";
+import buttonStyles from "../styles/Buttons.module.scss";
 
 export default function StepInfo({
   step,
@@ -24,18 +25,18 @@ export default function StepInfo({
 
   function volumeCssClasses(value: string) {
     const classes = [
-      styles.step,
-      emptyStep ? "" : styles.selected,
-      step.volume === value ? styles.active : "",
+      buttonStyles.step,
+      emptyStep ? "" : buttonStyles.selected,
+      step.volume === value ? buttonStyles.active : "",
     ];
     return classes.join(" ");
   }
 
   function probabilityCssClasses(prob: number) {
     const classes = [
-      styles.step,
-      emptyStep ? "" : styles.selected,
-      step.probability === prob ? styles.active : "",
+      buttonStyles.step,
+      emptyStep ? "" : buttonStyles.selected,
+      step.probability === prob ? buttonStyles.active : "",
     ];
     return classes.join(" ");
   }
@@ -45,7 +46,7 @@ export default function StepInfo({
       <section className={styles.stepInfoContainer}>
         <div className={styles.stepInfo}>
           <h4>Step Volume:</h4>
-          <div className={styles.trackSteps}>
+          <div className={styles.infoSteps}>
             {Object.entries(VolumeLevels).map((value) => (
               <div
                 key={value[0]}
@@ -60,7 +61,7 @@ export default function StepInfo({
 
         <div className={styles.stepInfo}>
           <h4>Step Probability</h4>
-          <div className={styles.trackSteps}>
+          <div className={styles.infoSteps}>
             {probability.map((prob) => (
               <div
                 key={prob}
