@@ -7,12 +7,12 @@ import MuteButton from "./mute-button";
 
 type Props = {
   trackModel: TrackModel;
-  onUpdateTrack: Function;
+  onUpdateTrack: (trackModel: TrackModel) => void;
   activeStep: number;
   adding: boolean;
-  setAdding: Function;
+  setAdding: (adding: boolean) => void;
   clickStepTarget: any;
-  setClickStepTarget: Function;
+  setClickStepTarget: (parent: HTMLElement | null) => void;
   stepTemplate: Step;
 };
 
@@ -51,7 +51,11 @@ export default function Track({
     updateStep(step, on);
 
     setAdding(step.on);
-    setClickStepTarget((event.target as HTMLElement).parentElement as any);
+    const target = event.target as HTMLElement;
+
+    if (target.parentElement) {
+      setClickStepTarget(target.parentElement);
+    }
   }
 
   function hoverStep(event: React.MouseEvent<HTMLDivElement>, step: Step) {

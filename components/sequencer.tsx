@@ -18,7 +18,9 @@ export default function Sequencer() {
   const [tracks, setTracks] = useState(generateTracks());
   const clock = Clock();
   const [adding, setAdding] = useState(false);
-  const [clickStepTarget, setClickStepTarget] = useState(null);
+  const [clickStepTarget, setClickStepTarget] = useState<HTMLElement | null>(
+    null
+  );
   const [stepTemplate, setStepTemplate] = useState<Step>(emptyStep);
 
   const mutedTracks = tracks.filter((t) => t.mute).reduce((acc) => acc + 1, 0);
@@ -57,7 +59,7 @@ export default function Sequencer() {
 
   function updateStepInfo(
     step: Step,
-    value: { volume: VolumeLevelNames; probability: number }
+    value: { volume?: VolumeLevelNames; probability?: number }
   ) {
     if (value.volume) {
       step.volume = value.volume;

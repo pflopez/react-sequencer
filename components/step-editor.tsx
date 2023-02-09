@@ -12,7 +12,10 @@ export default function StepEditor({
   updateStepInfo,
 }: {
   step: Step;
-  updateStepInfo: Function;
+  updateStepInfo: (
+    step: Step,
+    { volume, probability }: { volume?: VolumeLevelNames; probability?: number }
+  ) => void;
 }) {
   function updateVolume(value: VolumeLevelNames) {
     updateStepInfo(step, { volume: value });

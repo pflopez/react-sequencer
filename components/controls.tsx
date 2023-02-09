@@ -3,10 +3,10 @@ import styles from "../styles/Controls.module.scss";
 type Props = {
   playing: boolean;
   bpm: number;
-  onTogglePlay: Function;
-  onUpdateBpm: Function;
-  onSaveTracks: Function;
-  onClearTracks: Function;
+  onTogglePlay: () => void;
+  onUpdateBpm: (value: string) => void;
+  onSaveTracks: () => void;
+  onClearTracks: () => void;
 };
 
 export default function Controls({
@@ -41,10 +41,10 @@ export default function Controls({
           className={styles.bpm}
         />
       </div>
-      <button className={styles.button} onClick={(e) => onSaveTracks(e)}>
+      <button className={styles.button} onClick={onSaveTracks}>
         Save
       </button>
-      <button className={styles.button} onClick={(e) => onClearTracks(e)}>
+      <button className={styles.button} onClick={onClearTracks}>
         Clear
       </button>
 
