@@ -1,14 +1,5 @@
 import styles from "../styles/Controls.module.scss";
 
-type Props = {
-  playing: boolean;
-  bpm: number;
-  onTogglePlay: () => void;
-  onUpdateBpm: (value: string) => void;
-  onSaveTracks: () => void;
-  onClearTracks: () => void;
-};
-
 export default function Controls({
   playing,
   bpm,
@@ -16,7 +7,14 @@ export default function Controls({
   onUpdateBpm,
   onSaveTracks,
   onClearTracks,
-}: Props) {
+}: {
+  playing: boolean;
+  bpm: number;
+  onTogglePlay: () => void;
+  onUpdateBpm: (value: any) => void;
+  onSaveTracks: () => void;
+  onClearTracks: () => void;
+}) {
   function togglePlay() {
     onTogglePlay();
   }

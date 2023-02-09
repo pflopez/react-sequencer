@@ -12,16 +12,13 @@ export default function StepEditor({
   updateStepInfo,
 }: {
   step: Step;
-  updateStepInfo: (
-    step: Step,
-    { volume, probability }: { volume?: VolumeLevelNames; probability?: number }
-  ) => void;
+  updateStepInfo: (step: Partial<Step>) => void;
 }) {
-  function updateVolume(value: VolumeLevelNames) {
-    updateStepInfo(step, { volume: value });
+  function updateVolume(value: string) {
+    updateStepInfo({ volume: value as VolumeLevelNames });
   }
   function updateProbability(prob: number) {
-    updateStepInfo(step, { probability: prob });
+    updateStepInfo({ probability: prob });
   }
 
   function volumeCssClasses(value: string) {
@@ -47,13 +44,13 @@ export default function StepEditor({
           <h4>Step Volume:</h4>
           <div className={styles.infoSteps}>
             {Object.entries(VolumeLevels).map((value) => (
-              <div
+              <button
                 key={value[0]}
                 className={volumeCssClasses(value[0])}
-                onClick={(_) => updateVolume(value[0] as VolumeLevelNames)}
+                onClick={(_) => updateVolume(value[0])}
               >
                 <span>{value[0]}</span>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -62,13 +59,13 @@ export default function StepEditor({
           <h4>Step Probability</h4>
           <div className={styles.infoSteps}>
             {probability.map((prob) => (
-              <div
+              <button
                 key={prob}
                 className={probabilityCssClasses(prob)}
                 onClick={(_) => updateProbability(prob)}
               >
                 <span>{prob}</span>
-              </div>
+              </button>
             ))}
           </div>
         </div>

@@ -2,7 +2,7 @@ import styles from "../styles/Track.module.scss";
 import buttonStyles from "../styles/Buttons.module.scss";
 import { TrackModel } from "../models/track";
 import { Step } from "../models/step";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import MuteButton from "./mute-button";
 
 type Props = {
@@ -37,7 +37,7 @@ export default function Track({
     }
   }, [activeStep]);
 
-  function clickStep(event: React.MouseEvent<HTMLDivElement>, step: Step) {
+  function clickStep(event: React.MouseEvent<HTMLButtonElement>, step: Step) {
     if (event.button === 2) {
       event.preventDefault();
       return false;
@@ -58,7 +58,7 @@ export default function Track({
     }
   }
 
-  function hoverStep(event: React.MouseEvent<HTMLDivElement>, step: Step) {
+  function hoverStep(event: React.MouseEvent<HTMLButtonElement>, step: Step) {
     const fromSameTarget = event.relatedTarget === clickStepTarget;
     if (event.buttons && fromSameTarget) {
       updateStep(step, adding);
@@ -104,7 +104,7 @@ export default function Track({
       <MuteButton muted={trackModel.mute} onToggle={toggleMuteTrack} />
       <div className={styles.trackSteps}>
         {trackModel.steps.map((step) => (
-          <div
+          <button
             key={step.id}
             className={getStepClassNames(step)}
             onMouseDown={(e) => clickStep(e, step)}
@@ -112,7 +112,7 @@ export default function Track({
             onMouseUp={endClick}
           >
             {step.on && step.probability !== 100 ? step.probability : ""}
-          </div>
+          </button>
         ))}
       </div>
     </div>

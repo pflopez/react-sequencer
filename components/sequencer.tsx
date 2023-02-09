@@ -57,17 +57,7 @@ export default function Sequencer() {
     setTracks(generateTracks());
   }
 
-  function updateStepInfo(
-    step: Step,
-    value: { volume?: VolumeLevelNames; probability?: number }
-  ) {
-    if (value.volume) {
-      step.volume = value.volume;
-    }
-    if (value.probability) {
-      step.probability = value.probability;
-    }
-
+  function updateStepInfo(value: Partial<Step>) {
     setStepTemplate({
       ...stepTemplate,
       ...{
