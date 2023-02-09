@@ -54,7 +54,7 @@
     background-color: var(--step-color--hover);
   }
 
-  &.active:not(.accent) {
+  &.active {
     background-color: var(--step-color--active);
 
     &.low {
@@ -64,14 +64,6 @@
     &.mid {
       background-color: var(--step-color--active-mid);
     }
-  }
-
-  &.active.selected {
-    background-color: var(--accent-color);
-  }
-
-  &.accent {
-    background-color: var(--accent-color);
   }
 
   &.grouped {

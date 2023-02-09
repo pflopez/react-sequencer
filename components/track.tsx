@@ -3,6 +3,7 @@ import buttonStyles from "../styles/Buttons.module.scss";
 import { TrackModel } from "../models/track";
 import { Step } from "../models/step";
 import { useEffect } from "react";
+import MuteButton from "./mute-button";
 
 type Props = {
   trackModel: TrackModel;
@@ -12,8 +13,7 @@ type Props = {
   setAdding: Function;
   clickStepTarget: any;
   setClickStepTarget: Function;
-  onSelectedStep: Function;
-  selectedStep: Step;
+  stepTemplate: Step;
 };
 
 export default function Track({
@@ -24,8 +24,7 @@ export default function Track({
   setAdding,
   clickStepTarget,
   setClickStepTarget,
-  onSelectedStep,
-  selectedStep,
+  stepTemplate,
 }: Props) {
   // use effect to trigger samples.
   // This might not be  great as useEffect might be out of sync?
@@ -46,8 +45,8 @@ export default function Track({
     // should be on if changing something
     const on =
       !step.on ||
-      selectedStep.volume !== step.volume ||
-      selectedStep.probability !== step.probability;
+      stepTemplate.volume !== step.volume ||
+      stepTemplate.probability !== step.probability;
 
     updateStep(step, on);
 
@@ -71,31 +70,25 @@ export default function Track({
       step.accent = false;
     }
     step.on = newValue;
-    step.volume = selectedStep.volume;
-    step.probability = selectedStep.probability;
+    step.volume = stepTemplate.volume;
+    step.probability = stepTemplate.probability;
     onUpdateTrack(trackModel);
   }
 
-  function toggleMute() {
+  function toggleMuteTrack(): void {
     trackModel.mute = !trackModel.mute;
     // This seems to work?
     onUpdateTrack(trackModel);
-    // but shoulnd't I be doing this instead: ?
+    // but shouldn't I be doing this instead: ?
     // onUpdateTrack({ ...trackModel, ...{ mute: trackModel.mute } });
   }
 
-  function onContextMenu(event: React.MouseEvent<HTMLDivElement>, step: Step) {
-    event.preventDefault();
-    onSelectedStep(step, trackModel);
-    return false;
-  }
-
-  function stepClass(step: Step) {
+  function getStepClassNames(step: Step) {
     let classes = [
       buttonStyles.step,
       buttonStyles.grouped,
       step.on ? buttonStyles.active : " ",
-      step.id === selectedStep.id ? buttonStyles.accent : "",
+      step.id === stepTemplate.id ? buttonStyles.accent : "",
       buttonStyles[step.volume],
     ];
     return classes.join(" ");
@@ -104,23 +97,12 @@ export default function Track({
   return (
     <div className={styles.track}>
       <div className={styles.trackName}>{trackModel.name}</div>
-      <button
-        className={
-          buttonStyles.mute +
-          " " +
-          (trackModel.mute ? buttonStyles.activeButton : "")
-        }
-        onClick={toggleMute}
-        title="mute track"
-      >
-        M
-      </button>
+      <MuteButton muted={trackModel.mute} onToggle={toggleMuteTrack} />
       <div className={styles.trackSteps}>
         {trackModel.steps.map((step) => (
           <div
             key={step.id}
-            onContextMenu={(e) => onContextMenu(e, step)}
-            className={stepClass(step)}
+            className={getStepClassNames(step)}
             onMouseDown={(e) => clickStep(e, step)}
             onMouseEnter={(e) => hoverStep(e, step)}
             onMouseUp={endClick}

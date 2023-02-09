@@ -67,14 +67,8 @@
   text-transform: lowercase;
   font-weight: bold;
   letter-spacing: -5px;
-  line-height: 0;
-}
-.helper {
-  color: var(--font-color);
-  font-size: 12px;
+  line-height: 40px;
   flex: 1;
-  align-self: self-end;
-  padding-left: 10px;
 }
 
 .center {

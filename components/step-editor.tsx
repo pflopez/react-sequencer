@@ -7,14 +7,12 @@ import {
 import styles from "../styles/StepInfo.module.scss";
 import buttonStyles from "../styles/Buttons.module.scss";
 
-export default function StepInfo({
+export default function StepEditor({
   step,
   updateStepInfo,
-  emptyStep,
 }: {
   step: Step;
   updateStepInfo: Function;
-  emptyStep: boolean;
 }) {
   function updateVolume(value: VolumeLevelNames) {
     updateStepInfo(step, { volume: value });
@@ -26,7 +24,6 @@ export default function StepInfo({
   function volumeCssClasses(value: string) {
     const classes = [
       buttonStyles.step,
-      emptyStep ? "" : buttonStyles.selected,
       step.volume === value ? buttonStyles.active : "",
     ];
     return classes.join(" ");
@@ -35,7 +32,6 @@ export default function StepInfo({
   function probabilityCssClasses(prob: number) {
     const classes = [
       buttonStyles.step,
-      emptyStep ? "" : buttonStyles.selected,
       step.probability === prob ? buttonStyles.active : "",
     ];
     return classes.join(" ");

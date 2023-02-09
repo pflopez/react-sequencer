@@ -9,7 +9,7 @@ import {
   getTracksFromLocalStorage,
   saveTracksInLocalStorage,
 } from "../utility/ls";
-import StepInfo from "./step-info";
+import StepEditor from "./step-editor";
 import { Step, VolumeLevelNames } from "../models/step";
 
 const emptyStep = new Step(false, "mid", 100);
@@ -19,8 +19,7 @@ export default function Sequencer() {
   const clock = Clock();
   const [adding, setAdding] = useState(false);
   const [clickStepTarget, setClickStepTarget] = useState(null);
-  const [selectedStep, setSelectedStep] = useState<Step>(emptyStep);
-  const [selectedTrack, setSelectedTrack] = useState<TrackModel | null>(null);
+  const [stepTemplate, setStepTemplate] = useState<Step>(emptyStep);
 
   const mutedTracks = tracks.filter((t) => t.mute).reduce((acc) => acc + 1, 0);
   const mutatedTracksRatio = mutedTracks / tracks.length;
@@ -67,29 +66,13 @@ export default function Sequencer() {
       step.probability = value.probability;
     }
 
-    if (selectedTrack) {
-      setSelectedStep(step);
-      onUpdateTrack(selectedTrack);
-    } else {
-      setSelectedStep({
-        ...selectedStep,
-        ...{
-          volume: value.volume || selectedStep.volume,
-          probability: value.probability || selectedStep.probability,
-        },
-      });
-    }
-  }
-
-  function updateSelectedStep(step: Step, track: TrackModel) {
-    if (step.id === selectedStep.id) {
-      // remove selected state
-      setSelectedStep(emptyStep);
-      setSelectedTrack(null);
-    } else {
-      setSelectedStep(step);
-      setSelectedTrack(track);
-    }
+    setStepTemplate({
+      ...stepTemplate,
+      ...{
+        volume: value.volume || stepTemplate.volume,
+        probability: value.probability || stepTemplate.probability,
+      },
+    });
   }
 
   function onAllTrackMute() {
@@ -128,8 +111,7 @@ export default function Sequencer() {
             setAdding={setAdding}
             clickStepTarget={clickStepTarget}
             setClickStepTarget={setClickStepTarget}
-            onSelectedStep={updateSelectedStep}
-            selectedStep={selectedStep}
+            stepTemplate={stepTemplate}
           />
         ))}
         <StepIndicator
@@ -139,11 +121,7 @@ export default function Sequencer() {
           mutedTracks={mutatedTracksRatio}
         />
       </div>
-      <StepInfo
-        step={selectedStep}
-        updateStepInfo={updateStepInfo}
-        emptyStep={selectedStep.id === emptyStep.id}
-      />
+      <StepEditor step={stepTemplate} updateStepInfo={updateStepInfo} />
     </main>
   );
 }
