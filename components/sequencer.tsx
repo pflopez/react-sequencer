@@ -1,6 +1,6 @@
 import Track from "../components/track";
 import Controls from "../components/controls";
-import { generateTracks, TrackModel } from "../models/track";
+import { emptyStep, generateTracks, TrackModel } from "../models/track";
 import styles from "../styles/Sequencer.module.scss";
 import { useEffect, useState } from "react";
 import { Clock } from "../models/clock";
@@ -10,9 +10,7 @@ import {
   saveTracksInLocalStorage,
 } from "../utility/ls";
 import StepEditor from "./step-editor";
-import { Step, VolumeLevelNames } from "../models/step";
-
-const emptyStep = new Step(false, "mid", 100);
+import { Step } from "../models/step";
 
 export default function Sequencer() {
   const [tracks, setTracks] = useState(generateTracks());
@@ -23,7 +21,7 @@ export default function Sequencer() {
   );
   const [stepTemplate, setStepTemplate] = useState<Step>(emptyStep);
 
-  const mutedTracks = tracks.filter((t) => t.mute).reduce((acc) => acc + 1, 0);
+  const mutedTracks = tracks.filter((t) => t.muted).reduce((acc) => acc + 1, 0);
   const mutatedTracksRatio = mutedTracks / tracks.length;
 
   useEffect(() => {
@@ -68,15 +66,13 @@ export default function Sequencer() {
   }
 
   function onAllTrackMute() {
-    let mute = false;
-    if (mutedTracks === 0) {
-      // mute all.
-      mute = true;
-    }
+    let muted = false;
+    // no muted tracks, mute all.
+    if (mutedTracks === 0) muted = true;
     // else unmute
     setTracks(
       tracks.map((t) => {
-        t.mute = mute;
+        t.muted = muted;
         return t;
       })
     );
@@ -110,7 +106,7 @@ export default function Sequencer() {
           steps={tracks[0].steps}
           activeStep={clock.activeStep}
           onAllTrackMute={onAllTrackMute}
-          mutedTracks={mutatedTracksRatio}
+          mutedTracksRatio={mutatedTracksRatio}
         />
       </div>
       <StepEditor step={stepTemplate} updateStepInfo={updateStepInfo} />

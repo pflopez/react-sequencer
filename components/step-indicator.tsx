@@ -3,22 +3,21 @@ import { Step } from "../models/step";
 import buttonStyles from "../styles/Buttons.module.scss";
 import MuteButton from "./mute-button";
 
-type Props = {
-  steps: Step[];
-  activeStep: number;
-  mutedTracks: number;
-  onAllTrackMute: () => void;
-};
 export default function StepIndicator({
   steps,
   activeStep,
-  mutedTracks,
+  mutedTracksRatio,
   onAllTrackMute,
-}: Props) {
+}: {
+  steps: Step[];
+  activeStep: number;
+  mutedTracksRatio: number;
+  onAllTrackMute: () => void;
+}) {
   return (
     <>
       <div className={styles.stepIndicator}>
-        <MuteButton muted={mutedTracks} onToggle={onAllTrackMute} />
+        <MuteButton muted={mutedTracksRatio} onToggle={onAllTrackMute} />
         {steps.map((step, index) => (
           <div
             key={step.id}

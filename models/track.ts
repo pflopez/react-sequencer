@@ -12,7 +12,7 @@ export class TrackModel {
   name: string = "";
   sample: string = "";
   steps: Step[] = [];
-  mute = false;
+  muted = false;
   player = new Player();
 
   constructor(name: string, sample: string, steps?: Step[]) {
@@ -32,7 +32,7 @@ export class TrackModel {
   }
 
   play(step: Step) {
-    if (this.mute) return;
+    if (this.muted) return;
     if (step.probability >= 0 && step.probability <= 100) {
       const randomNumber = Math.random() * 100;
       if (randomNumber <= step.probability) {
@@ -72,3 +72,5 @@ export function generateTracks(): TrackModel[] {
     new TrackModel("Tom", "sounds/1/odd.wav"),
   ];
 }
+
+export const emptyStep = new Step(false, "mid", 100);

@@ -80,7 +80,7 @@ export default function Track({
   }
 
   function toggleMuteTrack(): void {
-    trackModel.mute = !trackModel.mute;
+    trackModel.muted = !trackModel.muted;
     // This seems to work?
     onUpdateTrack(trackModel);
     // but shouldn't I be doing this instead: ?
@@ -101,7 +101,7 @@ export default function Track({
   return (
     <div className={styles.track}>
       <div className={styles.trackName}>{trackModel.name}</div>
-      <MuteButton muted={trackModel.mute} onToggle={toggleMuteTrack} />
+      <MuteButton muted={trackModel.muted} onToggle={toggleMuteTrack} />
       <div className={styles.trackSteps}>
         {trackModel.steps.map((step) => (
           <button
